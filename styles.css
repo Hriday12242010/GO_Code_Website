@@ -213,3 +213,9 @@ button[disabled] {
   opacity: 0.8;
   cursor: not-allowed;
 }
+
+
+h4 {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+}
