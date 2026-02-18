@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Owners Login | GoCode Zone</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <h1 class="logo">GoCode Zone</h1>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="course.html">Course</a>
+          <a href="join.html">Join Discord</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="owners-login.html" aria-current="page">Owners Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container prose">
+        <h2>Owners Login</h2>
+        <p>Owner access is for community admins only. Use your owner credentials below.</p>
+
+        <form id="owner-login-form" class="contact-form" action="#" method="post" novalidate>
+          <label for="owner-email">Owner Email</label>
+          <input id="owner-email" name="ownerEmail" type="email" placeholder="owner@gocodezone.com" required />
+
+          <label for="owner-password">Password</label>
+          <input id="owner-password" name="ownerPassword" type="password" minlength="8" placeholder="Enter password" required />
+
+          <button class="btn" type="submit">Login</button>
+          <p id="owner-login-feedback" class="form-feedback" aria-live="polite"></p>
+        </form>
+
+        <section id="owner-panel" class="card hidden" aria-live="polite">
+          <h3>Owner Panel (Demo)</h3>
+          <p>You are logged in. From here you can manage:</p>
+          <ul>
+            <li>Announcements and class updates</li>
+            <li>Weekly quizzes and big tests</li>
+            <li>Member support priorities</li>
+          </ul>
+          <button id="owner-logout" class="btn" type="button">Logout</button>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 GoCode Zone</p>
+        <div>
+          <a href="https://discord.gg/y5EBSaf8r2" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
