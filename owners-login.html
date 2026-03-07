@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Owners Login | GoCode Zone</title>
+    <title>Portal Login | GoCode Zone</title>
     <style>
 :root {
   --bg: #f8fafc;
@@ -68,27 +68,44 @@ nav a[aria-current='page'] {
   color: var(--primary);
 }
 
-.hero {
-  padding: 5rem 0 4rem;
-  background: linear-gradient(180deg, #eff6ff, #f8fafc);
+.section {
+  padding: 3rem 0;
 }
 
-.eyebrow {
-  color: var(--primary);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.8rem;
+.grid-two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
 }
 
-h2 {
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  margin: 0.25rem 0 0.5rem;
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  max-width: 600px;
+  display: grid;
+  gap: 0.6rem;
 }
 
-.lead {
-  max-width: 760px;
-  color: var(--muted);
+input,
+textarea,
+select {
+  font: inherit;
+  padding: 0.65rem;
+  border-radius: 0.45rem;
+  border: 1px solid #cbd5e1;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.hidden {
+  display: none;
 }
 
 .btn {
@@ -107,81 +124,74 @@ h2 {
   background: var(--primary-dark);
 }
 
-.section {
-  padding: 3rem 0;
+.btn-ghost {
+  background: #e2e8f0;
+  color: var(--text);
 }
 
-.section.alt {
-  background: #eef2ff;
+.btn-ghost:hover {
+  background: #cbd5e1;
 }
 
-.feature-list li,
-.prose li {
-  margin: 0.4rem 0;
+.form-feedback {
+  margin: 0.2rem 0 0;
+  font-weight: 600;
 }
 
-.grid-two {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
+.form-feedback.ok {
+  color: #166534;
 }
 
-blockquote {
-  margin: 0 0 0.9rem;
-  padding: 1rem;
-  border-left: 4px solid var(--primary);
-  background: var(--surface);
+.form-feedback.error {
+  color: #991b1b;
 }
 
-cite {
-  display: block;
-  margin-top: 0.5rem;
-  color: var(--muted);
+.role-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
 }
 
-details {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 0.8rem;
-  margin-bottom: 0.6rem;
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.85rem;
 }
 
-.contact-form {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
-  padding: 1rem;
-  max-width: 600px;
-  display: grid;
+.badge.owner {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge.student {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.6rem;
+  margin-top: 0.8rem;
 }
 
-input,
-textarea {
-  font: inherit;
-  padding: 0.65rem;
-  border-radius: 0.45rem;
-  border: 1px solid #cbd5e1;
-}
-
-.unit-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
-  padding: 1rem;
+.info-box {
+  margin-top: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
 }
 
 .site-footer {
   border-top: 1px solid var(--border);
   background: var(--surface);
+  margin-top: 2rem;
 }
 
 .footer-wrap {
@@ -198,34 +208,6 @@ textarea {
   text-decoration: none;
   margin-left: 0.8rem;
 }
-
-.hidden {
-  display: none;
-}
-
-.form-feedback {
-  margin: 0.2rem 0 0;
-  font-weight: 600;
-}
-
-.form-feedback.ok {
-  color: #166534;
-}
-
-.form-feedback.error {
-  color: #991b1b;
-}
-
-button[disabled] {
-  opacity: 0.8;
-  cursor: not-allowed;
-}
-
-
-h4 {
-  margin: 0 0 0.45rem;
-  font-size: 1.05rem;
-}
 </style>
   </head>
   <body>
@@ -238,36 +220,106 @@ h4 {
           <a href="course.html">Course</a>
           <a href="join.html">Join Discord</a>
           <a href="privacy.html">Privacy</a>
-          <a href="owners-login.html" aria-current="page">Owners Login</a>
+          <a href="owners-login.html" aria-current="page">Portal Login</a>
         </nav>
       </div>
     </header>
 
     <main class="section">
-      <div class="container prose">
-        <h2>Owners Login</h2>
-        <p>Owner access is for community admins only. Use your owner credentials below.</p>
+      <div class="container">
+        <h2>Portal Login (Owners + Students)</h2>
+        <p>Login on the same page and unlock your role-based dashboard.</p>
 
-        <form id="owner-login-form" class="contact-form" action="#" method="post" novalidate>
-          <label for="owner-email">Owner Email</label>
-          <input id="owner-email" name="ownerEmail" type="email" placeholder="owner@gocodezone.com" required />
+        <div class="role-switch" role="tablist" aria-label="Choose role">
+          <button id="show-owner" class="btn" type="button" role="tab" aria-selected="true">Owner Login</button>
+          <button id="show-student" class="btn btn-ghost" type="button" role="tab" aria-selected="false">Student Login</button>
+        </div>
 
-          <label for="owner-password">Password</label>
-          <input id="owner-password" name="ownerPassword" type="password" minlength="8" placeholder="Enter password" required />
+        <div class="grid-two">
+          <form id="owner-login-form" class="contact-form" action="#" method="post" novalidate>
+            <p class="badge owner">⭐ Owner Badge</p>
+            <label for="owner-email">Owner Email</label>
+            <input id="owner-email" name="ownerEmail" type="email" placeholder="owner@gocodezone.com" required />
 
-          <button class="btn" type="submit">Login</button>
-          <p id="owner-login-feedback" class="form-feedback" aria-live="polite"></p>
-        </form>
+            <label for="owner-password">Password</label>
+            <input id="owner-password" name="ownerPassword" type="password" minlength="8" placeholder="Enter password" required />
+
+            <button class="btn" type="submit">Login as Owner</button>
+            <p id="owner-login-feedback" class="form-feedback" aria-live="polite"></p>
+          </form>
+
+          <form id="student-login-form" class="contact-form hidden" action="#" method="post" novalidate>
+            <p class="badge student">🎓 Student Badge</p>
+            <label for="student-email">Student Email</label>
+            <input id="student-email" name="studentEmail" type="email" placeholder="student@email.com" required />
+
+            <label for="student-password">Password</label>
+            <input id="student-password" name="studentPassword" type="password" minlength="6" placeholder="Enter password" required />
+
+            <button class="btn" type="submit">Login as Student</button>
+            <p id="student-login-feedback" class="form-feedback" aria-live="polite"></p>
+          </form>
+        </div>
 
         <section id="owner-panel" class="card hidden" aria-live="polite">
-          <h3>Owner Panel (Demo)</h3>
-          <p>You are logged in. From here you can manage:</p>
-          <ul>
-            <li>Announcements and class updates</li>
-            <li>Weekly quizzes and big tests</li>
-            <li>Member support priorities</li>
-          </ul>
-          <button id="owner-logout" class="btn" type="button">Logout</button>
+          <h3>Owner Dashboard</h3>
+          <p class="badge owner">⭐ Owner Access: Admin Level</p>
+          <p>Owners can add users, create accounts, manage admins, create classes, and attend classes.</p>
+          <div class="actions">
+            <button id="owner-add-user" class="btn" type="button">Add User Account</button>
+            <button id="owner-add-admin" class="btn" type="button">Create Admin Account</button>
+            <button id="owner-add-class" class="btn" type="button">Add Class</button>
+            <button id="owner-attend-class" class="btn btn-ghost" type="button">Attend Class</button>
+          </div>
+          <p id="owner-action-feedback" class="form-feedback" aria-live="polite"></p>
+          <button id="owner-logout" class="btn btn-ghost" type="button">Logout</button>
+        </section>
+
+        <section id="student-panel" class="card hidden" aria-live="polite">
+          <h3>Student Dashboard</h3>
+          <p class="badge student">🎓 Student Access: Class + Assignments</p>
+          <p>Students can answer class schedule questions, view weekly assignments, and sign up for classes.</p>
+
+          <div class="actions">
+            <button id="student-class-question" class="btn" type="button">Class Question</button>
+            <button id="student-assignments" class="btn btn-ghost" type="button">Weekly Assignments</button>
+          </div>
+
+          <form id="class-signup-form" class="contact-form hidden" action="#" method="post" novalidate>
+            <h4>Weekly Class Signup</h4>
+            <label for="class-day">Which day?</label>
+            <select id="class-day" name="classDay" required>
+              <option value="">Select a day</option>
+              <option>Monday</option>
+              <option>Wednesday</option>
+              <option>Friday</option>
+              <option>Saturday</option>
+            </select>
+
+            <label for="class-time">Which time?</label>
+            <select id="class-time" name="classTime" required>
+              <option value="">Select a time</option>
+              <option>09:00 AM</option>
+              <option>02:00 PM</option>
+              <option>06:00 PM</option>
+              <option>08:00 PM</option>
+            </select>
+
+            <button class="btn" type="submit">Sign Up for Weekly Class</button>
+            <p id="class-signup-feedback" class="form-feedback" aria-live="polite"></p>
+          </form>
+
+          <div id="assignment-box" class="info-box hidden">
+            <h4>This Week's Assignments</h4>
+            <ul>
+              <li>Build a Go CLI app with input validation.</li>
+              <li>Practice loops, arrays, and functions (20 problems).</li>
+              <li>Submit one mini project before Sunday night.</li>
+            </ul>
+          </div>
+
+          <p id="student-action-feedback" class="form-feedback" aria-live="polite"></p>
+          <button id="student-logout" class="btn btn-ghost" type="button">Logout</button>
         </section>
       </div>
     </main>
@@ -291,66 +343,129 @@ h4 {
     el.classList.toggle('error', !ok);
   };
 
-  const contactForm = document.querySelector('.contact-form[action="#"][method="post"]:not(#owner-login-form):not(#join-request-form)');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const btn = contactForm.querySelector('button[type="submit"]');
-      if (btn) btn.textContent = 'Message Sent ✓';
-      btn?.setAttribute('disabled', 'disabled');
-    });
-  }
+  const showOwnerBtn = document.getElementById('show-owner');
+  const showStudentBtn = document.getElementById('show-student');
+  const ownerLoginForm = document.getElementById('owner-login-form');
+  const studentLoginForm = document.getElementById('student-login-form');
 
-  const joinForm = document.getElementById('join-request-form');
-  if (joinForm) {
-    joinForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = joinForm.querySelector('#join-name')?.value.trim();
-      const discord = joinForm.querySelector('#join-discord')?.value.trim();
-      const box = document.getElementById('join-request-feedback');
-      if (!name || !discord) {
-        feedback(box, 'Please complete both fields before submitting.', false);
-        return;
-      }
-      feedback(box, `Thanks ${name}! We received your Discord handle (${discord}).`);
-      joinForm.reset();
-    });
-  }
-
-  const loginForm = document.getElementById('owner-login-form');
   const ownerPanel = document.getElementById('owner-panel');
-  const logoutBtn = document.getElementById('owner-logout');
-  const ownerFeedback = document.getElementById('owner-login-feedback');
+  const studentPanel = document.getElementById('student-panel');
 
-  const setOwnerSession = (loggedIn) => {
-    localStorage.setItem('gocode-owner-logged-in', loggedIn ? '1' : '0');
-    if (ownerPanel) ownerPanel.classList.toggle('hidden', !loggedIn);
+  const ownerLoginFeedback = document.getElementById('owner-login-feedback');
+  const studentLoginFeedback = document.getElementById('student-login-feedback');
+  const ownerActionFeedback = document.getElementById('owner-action-feedback');
+  const studentActionFeedback = document.getElementById('student-action-feedback');
+
+  const assignmentBox = document.getElementById('assignment-box');
+  const classSignupForm = document.getElementById('class-signup-form');
+  const classSignupFeedback = document.getElementById('class-signup-feedback');
+
+  const setLoginMode = (mode) => {
+    const ownerMode = mode === 'owner';
+    ownerLoginForm?.classList.toggle('hidden', !ownerMode);
+    studentLoginForm?.classList.toggle('hidden', ownerMode);
+
+    showOwnerBtn?.classList.toggle('btn-ghost', !ownerMode);
+    showStudentBtn?.classList.toggle('btn-ghost', ownerMode);
+
+    showOwnerBtn?.setAttribute('aria-selected', ownerMode ? 'true' : 'false');
+    showStudentBtn?.setAttribute('aria-selected', ownerMode ? 'false' : 'true');
   };
 
-  if (loginForm) {
-    const session = localStorage.getItem('gocode-owner-logged-in') === '1';
-    setOwnerSession(session);
+  const setSession = (role) => {
+    localStorage.setItem('gocode-portal-role', role || '');
+    ownerPanel?.classList.toggle('hidden', role !== 'owner');
+    studentPanel?.classList.toggle('hidden', role !== 'student');
+  };
 
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('owner-email')?.value.trim();
-      const password = document.getElementById('owner-password')?.value;
+  showOwnerBtn?.addEventListener('click', () => setLoginMode('owner'));
+  showStudentBtn?.addEventListener('click', () => setLoginMode('student'));
 
-      if (!email || !password || password.length < 8) {
-        feedback(ownerFeedback, 'Enter a valid owner email and a password with at least 8 characters.', false);
-        return;
-      }
+  ownerLoginForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('owner-email')?.value.trim();
+    const password = document.getElementById('owner-password')?.value;
 
-      setOwnerSession(true);
-      feedback(ownerFeedback, 'Login successful (demo mode).');
-      loginForm.reset();
-    });
-  }
+    if (!email || !password || password.length < 8) {
+      feedback(ownerLoginFeedback, 'Enter a valid owner email and password (8+ chars).', false);
+      return;
+    }
 
-  logoutBtn?.addEventListener('click', () => {
-    setOwnerSession(false);
-    feedback(ownerFeedback, 'Logged out successfully.');
+    setSession('owner');
+    feedback(ownerLoginFeedback, 'Owner login successful (demo mode).');
+    ownerLoginForm.reset();
   });
+
+  studentLoginForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('student-email')?.value.trim();
+    const password = document.getElementById('student-password')?.value;
+
+    if (!email || !password || password.length < 6) {
+      feedback(studentLoginFeedback, 'Enter a valid student email and password (6+ chars).', false);
+      return;
+    }
+
+    setSession('student');
+    feedback(studentLoginFeedback, 'Student login successful (demo mode).');
+    studentLoginForm.reset();
+  });
+
+  document.getElementById('owner-add-user')?.addEventListener('click', () => {
+    feedback(ownerActionFeedback, 'User account workflow opened (demo).');
+  });
+  document.getElementById('owner-add-admin')?.addEventListener('click', () => {
+    feedback(ownerActionFeedback, 'Admin account creation workflow opened (demo).');
+  });
+  document.getElementById('owner-add-class')?.addEventListener('click', () => {
+    feedback(ownerActionFeedback, 'Class creation workflow opened (demo).');
+  });
+  document.getElementById('owner-attend-class')?.addEventListener('click', () => {
+    feedback(ownerActionFeedback, 'You are marked to attend the next owner class session.');
+  });
+
+  document.getElementById('student-class-question')?.addEventListener('click', () => {
+    classSignupForm?.classList.remove('hidden');
+    feedback(studentActionFeedback, 'Question: Which class day and time works for you this week?');
+  });
+
+  document.getElementById('student-assignments')?.addEventListener('click', () => {
+    assignmentBox?.classList.toggle('hidden');
+    feedback(studentActionFeedback, 'Weekly assignments panel updated.');
+  });
+
+  classSignupForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const day = document.getElementById('class-day')?.value;
+    const time = document.getElementById('class-time')?.value;
+
+    if (!day || !time) {
+      feedback(classSignupFeedback, 'Please choose both class day and class time.', false);
+      return;
+    }
+
+    feedback(classSignupFeedback, `You are signed up for ${day} at ${time}.`);
+    classSignupForm.reset();
+  });
+
+  document.getElementById('owner-logout')?.addEventListener('click', () => {
+    setSession('');
+    feedback(ownerActionFeedback, 'Owner logged out successfully.');
+  });
+
+  document.getElementById('student-logout')?.addEventListener('click', () => {
+    setSession('');
+    feedback(studentActionFeedback, 'Student logged out successfully.');
+  });
+
+  const session = localStorage.getItem('gocode-portal-role');
+  if (session === 'owner' || session === 'student') {
+    setSession(session);
+    setLoginMode(session === 'owner' ? 'owner' : 'student');
+  } else {
+    setSession('');
+    setLoginMode('owner');
+  }
 })();
 </script>
   </body>
