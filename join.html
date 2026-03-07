@@ -268,16 +268,48 @@ h4 {
 
 
         <h3>Quick Join Request</h3>
-        <form id="join-request-form" class="contact-form" action="#" method="post">
+        <form
+          id="join-request-form"
+          class="contact-form"
+          name="enrollment"
+          method="post"
+          action="/"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          data-enhanced-form="true"
+          novalidate
+        >
+          <input type="hidden" name="form-name" value="enrollment" />
+          <p class="hidden">
+            <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+
           <label for="join-name">Name</label>
-          <input id="join-name" name="joinName" type="text" required />
+          <input id="join-name" name="joinName" type="text" minlength="2" autocomplete="name" required />
+
+          <label for="join-email">Email</label>
+          <input id="join-email" name="joinEmail" type="email" autocomplete="email" required />
 
           <label for="join-discord">Discord Username</label>
-          <input id="join-discord" name="joinDiscord" type="text" placeholder="username#1234" required />
+          <input
+            id="join-discord"
+            name="joinDiscord"
+            type="text"
+            placeholder="username#1234"
+            pattern="^.{2,32}(#\d{4})?$"
+            required
+          />
 
-          <button class="btn" type="submit">Submit Request</button>
+          <label for="join-goal">Learning Goal</label>
+          <textarea id="join-goal" name="joinGoal" rows="3" minlength="10" required></textarea>
+
+          <button class="btn" type="submit">Submit Enrollment</button>
           <p id="join-request-feedback" class="form-feedback" aria-live="polite"></p>
         </form>
+        <p>
+          This enrollment form is Netlify-ready. To use Formspree instead, replace the form
+          <code>action</code> with your Formspree endpoint URL.
+        </p>
 
         <h3>Community rules (short version)</h3>
         <ul>
@@ -306,29 +338,73 @@ h4 {
     el.classList.toggle('error', !ok);
   };
 
-  const contactForm = document.querySelector('.contact-form[action="#"][method="post"]:not(#owner-login-form):not(#join-request-form)');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+  const encodeFormData = (formData) => {
+    return [...formData.entries()]
+      .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+      .join('&');
+  };
+
+  const enhancedForms = document.querySelectorAll('form[data-enhanced-form="true"]');
+  enhancedForms.forEach((form) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn = contactForm.querySelector('button[type="submit"]');
-      if (btn) btn.textContent = 'Message Sent ✓';
-      btn?.setAttribute('disabled', 'disabled');
+      const messageBox = form.querySelector('.form-feedback');
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        feedback(messageBox, 'Please fix the highlighted fields and try again.', false);
+        return;
+      }
+
+      const formData = new FormData(form);
+      const originalBtnText = submitBtn?.textContent;
+      if (submitBtn) {
+        submitBtn.textContent = 'Sending...';
+        submitBtn.setAttribute('disabled', 'disabled');
+      }
+
+      try {
+        const action = (form.getAttribute('action') || '/').trim();
+        const isFormspree = action.includes('formspree.io');
+        const request = await fetch(action, {
+          method: 'POST',
+          headers: isFormspree
+            ? { Accept: 'application/json' }
+            : { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: isFormspree ? formData : encodeFormData(formData),
+        });
+
+        if (!request.ok) throw new Error('Request failed');
+        feedback(messageBox, 'Thanks! Your enrollment request has been submitted.');
+        form.reset();
+      } catch (_error) {
+        feedback(
+          messageBox,
+          'Sorry, there was a problem sending your enrollment request. Please try again.',
+          false,
+        );
+      } finally {
+        if (submitBtn) {
+          submitBtn.textContent = originalBtnText || 'Submit';
+          submitBtn.removeAttribute('disabled');
+        }
+      }
     });
-  }
+  });
 
   const joinForm = document.getElementById('join-request-form');
   if (joinForm) {
-    joinForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = joinForm.querySelector('#join-name')?.value.trim();
-      const discord = joinForm.querySelector('#join-discord')?.value.trim();
-      const box = document.getElementById('join-request-feedback');
-      if (!name || !discord) {
-        feedback(box, 'Please complete both fields before submitting.', false);
+    const discordInput = joinForm.querySelector('#join-discord');
+    discordInput?.addEventListener('input', () => {
+      const value = discordInput.value.trim();
+      if (!value) {
+        discordInput.setCustomValidity('Please enter your Discord username.');
         return;
       }
-      feedback(box, `Thanks ${name}! We received your Discord handle (${discord}).`);
-      joinForm.reset();
+
+      const valid = /^.{2,32}(#\d{4})?$/.test(value);
+      discordInput.setCustomValidity(valid ? '' : 'Use a valid Discord handle. Example: username#1234');
     });
   }
 
